@@ -5,8 +5,12 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/awpathum/Rent-a-car-project/tree/main/rent-a-car-service-config-store
-          search-paths:
-           - 'service-config/*service'
-          #username: root
-          #passphrase: 12345
+          uri: https://github.com/awpathum/Rent-a-car-project
+          search-paths: '*'
+
+
+#server:
+#  port: 8191
+#spring:
+#  profiles:
+#    active: native
