@@ -1,11 +1,28 @@
 server:
   port: 8282
 spring:
-  security:
-    user:
-      name: pathumw
+    datasource:
+      url: jdbc:postgresql://localhost:5432/authDB?createDatabaseIfNotExist=true
+      username: postgres
       password: test123
-      roles: ADMIN,USER
+      driver-class-name: org.postgresql.Driver
+      initialization-mode: always
+  #      initialization-mode: always
+    jpa:
+      hibernate:
+        ddl-auto: create
+      open-in-view: false
+logging:
+    level:
+      org:
+        hibernate:
+          type: trace
+#spring:
+#  security:
+#    user:
+#      name: pathumw
+#      password: test123
+#      roles: ADMIN,USER
 security:
   oauth2:
     client:
