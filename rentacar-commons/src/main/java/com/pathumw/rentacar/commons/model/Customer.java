@@ -1,5 +1,7 @@
 package com.pathumw.rentacar.commons.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
+@JsonSerialize
 public class Customer {
     @Id
     @GeneratedValue
