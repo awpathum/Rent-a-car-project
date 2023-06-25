@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
+//@Configuration
 public class UserConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
     PasswordEncoder passwordEncoder=PasswordEncoderFactories.createDelegatingPasswordEncoder();

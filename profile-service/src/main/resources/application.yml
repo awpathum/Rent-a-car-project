@@ -2,7 +2,26 @@
 #  application:
 #    name: profile
 
+server:
+  port: 8080
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?createDatabaseIfNotExist=true
+    username: postgres
+    password: test123
+    driver-class-name: org.postgresql.Driver
+  application:
+    name: profile
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://localhost:8282/oauth/check_token
+    client:
+      client-id: mobile
+      client-secret: pin
+
+# uncomment to enable git config server
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
