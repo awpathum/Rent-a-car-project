@@ -3,6 +3,7 @@ package com.pathumw.rentacar.profileservice.controller;
 import com.pathumw.rentacar.commons.model.Customer;
 import com.pathumw.rentacar.profileservice.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class ProfileController {
     @Autowired
     CustomerService customerService;
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('create_profile')")
     public Customer save(@RequestBody Customer customer){
         return customerService.save(customer);
     }
