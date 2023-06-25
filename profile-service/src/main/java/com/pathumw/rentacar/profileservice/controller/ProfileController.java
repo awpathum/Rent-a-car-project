@@ -13,18 +13,21 @@ import java.util.List;
 public class ProfileController {
     @Autowired
     CustomerService customerService;
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    @RequestMapping(value = "/customers", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('create_profile')")
     public Customer save(@RequestBody Customer customer){
         return customerService.save(customer);
     }
-    @RequestMapping(value = "/profiles", method = RequestMethod.GET)
-    public List<Customer> getAllCustomers(){
-        return customerService.getAllCustomers();
-    }
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public Customer getCustomerById(@RequestParam int id){
+    @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_admin')")
+    public Customer fetch(@PathVariable(value = "id") int id){
         Customer customer = customerService.getCustomerById(id);
         return customer;
     }
+    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_admin')")
+    public List<Customer> fetch(){
+        return customerService.getAllCustomers();
+    }
+
 }
