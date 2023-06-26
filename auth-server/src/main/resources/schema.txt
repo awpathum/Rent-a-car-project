@@ -1,0 +1,98 @@
+-- Create the oauth_client_details table
+CREATE TABLE IF NOT EXISTS oauth_client_details (
+                                                    client_id VARCHAR(255) NOT NULL,
+                                                    client_secret VARCHAR(255) NOT NULL,
+                                                    web_server_redirect_uri VARCHAR(2048),
+                                                    scope VARCHAR(255),
+                                                    access_token_validity INT,
+                                                    refresh_token_validity INT,
+                                                    resource_ids VARCHAR(1024),
+                                                    authorized_grant_types VARCHAR(1024),
+                                                    authorities VARCHAR(1024),
+                                                    additional_information VARCHAR(4096),
+                                                    autoapprove VARCHAR(255),
+                                                    PRIMARY KEY (client_id)
+);
+
+-- Create the permission table
+CREATE TABLE IF NOT EXISTS permission (
+                                          id SERIAL PRIMARY KEY,
+                                          name VARCHAR(512) UNIQUE
+);
+
+-- Create the role table
+CREATE TABLE IF NOT EXISTS role (
+                                    id SERIAL PRIMARY KEY,
+                                    name VARCHAR(255) UNIQUE
+);
+
+-- Create the user table
+CREATE TABLE IF NOT EXISTS "user" (
+                                      id SERIAL PRIMARY KEY,
+                                      username VARCHAR(100) NOT NULL UNIQUE,
+                                      password VARCHAR(1024) NOT NULL,
+                                      email VARCHAR(1024) NOT NULL,
+                                      enabled BOOLEAN NOT NULL,
+                                      accountNonExpired BOOLEAN NOT NULL,
+                                      credentialsNonExpired BOOLEAN NOT NULL,
+                                      accountNonLocked BOOLEAN NOT NULL
+);
+
+-- Create the permission_role table
+CREATE TABLE IF NOT EXISTS permission_role (
+                                               permission_id INT,
+                                               role_id INT,
+                                               FOREIGN KEY (permission_id) REFERENCES permission (id),
+                                               FOREIGN KEY (role_id) REFERENCES role (id)
+);
+
+-- Create the role_user table
+CREATE TABLE IF NOT EXISTS role_user (
+                                         role_id INT,
+                                         user_id INT,
+                                         FOREIGN KEY (role_id) REFERENCES role (id),
+                                         FOREIGN KEY (user_id) REFERENCES "user" (id)
+);
+
+-- Create the oauth_client_token table
+CREATE TABLE IF NOT EXISTS oauth_client_token (
+                                                  token_id VARCHAR(256),
+                                                  token BYTEA,
+                                                  authentication_id VARCHAR(256) PRIMARY KEY,
+                                                  user_name VARCHAR(256),
+                                                  client_id VARCHAR(256)
+);
+
+-- Create the oauth_access_token table
+CREATE TABLE IF NOT EXISTS oauth_access_token (
+                                                  token_id VARCHAR(256),
+                                                  token BYTEA,
+                                                  authentication_id VARCHAR(256) PRIMARY KEY,
+                                                  user_name VARCHAR(256),
+                                                  client_id VARCHAR(256),
+                                                  authentication BYTEA,
+                                                  refresh_token VARCHAR(256)
+);
+
+-- Create the oauth_refresh_token table
+CREATE TABLE IF NOT EXISTS oauth_refresh_token (
+                                                   token_id VARCHAR(256),
+                                                   token BYTEA,
+                                                   authentication BYTEA
+);
+
+-- Create the oauth_code table
+CREATE TABLE IF NOT EXISTS oauth_code (
+                                          code VARCHAR(256),
+                                          authentication BYTEA
+);
+
+-- Create the oauth_approvals table
+CREATE TABLE IF NOT EXISTS oauth_approvals (
+                                               user_id VARCHAR(256),
+                                               client_id VARCHAR(256),
+                                               scope VARCHAR(256),
+                                               status VARCHAR(10),
+                                               expiresAt TIMESTAMP,
+                                               lastModifiedAt TIMESTAMP
+);

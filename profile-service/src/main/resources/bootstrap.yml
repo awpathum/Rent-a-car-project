@@ -1,4 +1,6 @@
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8191
+# uncomment to use git config store
+
+#spring:
+#  cloud:
+#    config:
+#      uri: http://localhost:8191
