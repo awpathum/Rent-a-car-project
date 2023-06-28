@@ -1,0 +1,16 @@
+server:
+  port: 8585
+  servlet:
+    session:
+      cookie:
+        name: KSESSION
+security:
+  oauth2:
+    client:
+      client-id: mobile
+      client-secret: pin
+      user-authorization-uri: http://localhost:8282/oauth/authorize
+      access-token-uri: http://localhost:8282/oauth/token
+#      registered-redirect-uri: http://localhost:8585/login
+    resource:
+      token-info-uri: http://localhost:8282/oauth/check_token

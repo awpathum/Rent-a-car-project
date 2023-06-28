@@ -1,0 +1,19 @@
+#spring.application.name=Demo Timestamp Task
+#logging.level.org.springframework.cloud.task=DEBUG
+#spring.aop.proxy-target-class=false
+
+spring:
+  application:
+    name: Timestamp Task
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskDB?createDatabaseIfNotExist=true
+    username: postgres
+    password: test123
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          task: DEBUG
