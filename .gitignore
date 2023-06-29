@@ -1,1 +1,5 @@
 /timestamp/target/
+/video15_project/*/.idea
+/video15_project/*/target
+/video15_project/*/.gitignore
+

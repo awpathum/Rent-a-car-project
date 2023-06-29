@@ -9,7 +9,3 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: create
-  application:
-    name: vehicle
-server:
-  port: 9191
