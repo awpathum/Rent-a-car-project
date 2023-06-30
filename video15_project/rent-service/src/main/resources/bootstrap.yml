@@ -1,8 +1,8 @@
 spring:
   application:
-    name: RentService
+    name: rent-service
 server:
-  port: 0
+  port: 8191
 eureka:
   client:
     register-with-eureka: true

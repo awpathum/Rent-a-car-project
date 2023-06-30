@@ -26,6 +26,7 @@ public class VehicleController {
 
     @PostMapping
     public Vehicle save(@RequestBody Vehicle vehicle) {
+
         return vehicleService.save(vehicle);
     }
 
